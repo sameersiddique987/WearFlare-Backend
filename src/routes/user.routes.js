@@ -22,9 +22,9 @@ router.post("/uploadimage", upload.single(), uploadImage);
 router.post('/checkout', checkout);
 
 
-router.post("/", verifyToken, createOrder);         // Save order
-router.get("/", verifyToken, getAllOrders);         // Get all (admin)
-router.get("/my-orders", verifyToken, getUserOrders); // User orders
+router.post("/", authenticateUser, createOrder);         // Save order
+router.get("/", authenticateUser, getAllOrders);         // Get all (admin)
+router.get("/my-orders", authenticateUser, getUserOrders); // User orders
 router.put("/status", authenticateUser, updateOrderStatus); // Update status
 
 
