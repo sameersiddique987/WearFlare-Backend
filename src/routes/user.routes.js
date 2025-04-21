@@ -6,10 +6,10 @@ import {
   registerUser,
   uploadImage,
 } from "../controllers/user.controller.js";
-import upload from "../middlewere/multer.middlewere.js";
+import upload from "../middleware/multer.middleware.js";
 import checkout from "../controllers/checkout.js";
 import { createOrder, getAllOrders, getUserOrders, updateOrderStatus } from "../controllers/order.controller.js";
-import { verifyToken } from "../middlewere/auth.middlewere.js"; 
+import { verifyToken } from "../middleware/auth.middleware.js"; 
 
 const router = express.Router();
 
