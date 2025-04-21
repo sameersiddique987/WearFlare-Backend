@@ -9,7 +9,7 @@ import {
 import upload from "../middleware/multer.middleware.js";
 import checkout from "../controllers/checkout.js";
 import { createOrder, getAllOrders, getUserOrders, updateOrderStatus } from "../controllers/order.controller.js";
-import { verifyToken } from "../middleware/auth.middleware.js"; 
+import authenticateUser from "../middleware/auth.middleware.js";
 
 const router = express.Router();
 
@@ -25,7 +25,7 @@ router.post('/checkout', checkout);
 router.post("/", verifyToken, createOrder);         // Save order
 router.get("/", verifyToken, getAllOrders);         // Get all (admin)
 router.get("/my-orders", verifyToken, getUserOrders); // User orders
-router.put("/status", verifyToken, updateOrderStatus); // Update status
+router.put("/status", authenticateUser, updateOrderStatus); // Update status
 
 
 export default router;
