@@ -8,7 +8,8 @@ import {
 } from "../controllers/user.controller.js";
 import upload from "../middlewere/multer.middlewere.js";
 import checkout from "../controllers/checkout.js";
-
+import { createOrder, getAllOrders, getUserOrders, updateOrderStatus } from "../controllers/order.controller.js";
+import { verifyToken } from "../middlewere/auth.middlewere.js"; 
 
 const router = express.Router();
 
@@ -19,5 +20,12 @@ router.post("/refreshtoken", refreshToken);
 router.post("/uploadimage", upload.single(), uploadImage);
 
 router.post('/checkout', checkout);
+
+
+router.post("/", verifyToken, createOrder);         // Save order
+router.get("/", verifyToken, getAllOrders);         // Get all (admin)
+router.get("/my-orders", verifyToken, getUserOrders); // User orders
+router.put("/status", verifyToken, updateOrderStatus); // Update status
+
 
 export default router;
