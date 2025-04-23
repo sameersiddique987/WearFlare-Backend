@@ -8,8 +8,7 @@ import {
 } from "../controllers/user.controller.js";
 import upload from "../middleware/multer.middleware.js";
 import checkout from "../controllers/checkout.js";
-import { createOrder, getAllOrders, getUserOrders, updateOrderStatus } from "../controllers/order.controller.js";
-import authenticateUser from "../middleware/auth.middleware.js";
+
 
 const router = express.Router();
 
@@ -21,11 +20,6 @@ router.post("/uploadimage", upload.single(), uploadImage);
 
 router.post('/checkout', checkout);
 
-
-router.post("/", authenticateUser, createOrder);         // Save order
-router.get("/", authenticateUser, getAllOrders);         // Get all (admin)
-router.get("/my-orders", authenticateUser, getUserOrders); // User orders
-router.put("/status", authenticateUser, updateOrderStatus); // Update status
 
 
 export default router;

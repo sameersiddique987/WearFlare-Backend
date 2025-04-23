@@ -70,6 +70,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import connectDB from "./src/db/index.js";
 import routes from "./src/routes/user.routes.js";
+import orderRoutes from "./src/routes/order.routes.js"
 
 const app = express();
 app.use(express.json());
@@ -95,6 +96,7 @@ app.get("/", (req, res) => {
 
 // ✅ API Routes
 app.use("/api/v1", routes);
+app.use("/api/v1", orderRoutes);
 
 // ✅ Start DB and server
 connectDB()
