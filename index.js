@@ -76,27 +76,30 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-// const allowedOrigins = [
-//   'https://wear-flare-project.vercel.app',
-//   'http://localhost:5173'
-// ];
+const allowedOrigins = [
+  'https://wear-flare-project.vercel.app',
+  'http://localhost:5173',
+  'http://localhost:5174'
+];
 
-// // ✅ Proper CORS middleware — keep only this
+// ✅ Proper CORS middleware — keep only this
 // app.use(cors({
 //   origin: allowedOrigins,
 //   credentials: true,
 // }));
 
-const corsOptions = {
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  optionsSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+}));
 
 
-// ✅ No need for manual headers anymore
-// ✅ No need for app.options("*")
 
 app.get("/", (req, res) => {
   res.send("🚀 Server is running...");
