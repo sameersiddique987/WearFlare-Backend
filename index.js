@@ -78,6 +78,7 @@ app.use(cookieParser());
 
 const allowedOrigins = [
   'https://wear-flare-project.vercel.app',
+  "https://wear-flare-admin-panel.vercel.app",
   'http://localhost:5173',
   'http://localhost:5174'
 ];
