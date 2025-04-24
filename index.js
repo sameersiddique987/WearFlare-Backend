@@ -71,7 +71,7 @@ import cors from "cors";
 import connectDB from "./src/db/index.js";
 import routes from "./src/routes/user.routes.js";
 import orderRoutes from "./src/routes/order.routes.js"
-
+import  adminLogin  from "./src/routes/admin.login.routes.js"
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
@@ -108,6 +108,7 @@ app.get("/", (req, res) => {
 // ✅ API Routes
 app.use("/api/v1", routes);
 app.use("/api/v1", orderRoutes);
+app.use("/api/v1", adminLogin );
 
 // ✅ Start DB and server
 connectDB()
