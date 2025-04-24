@@ -25,7 +25,7 @@ export const adminLogin = async (req, res) => {
       {
         _id: user._id,
         email: user.email,
-        role: user.role, // 🔐 important
+        role: user.role, 
       },
       process.env.ACCESS_JWT_SECRET,
       { expiresIn: "1d" }

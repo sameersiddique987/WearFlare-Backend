@@ -1,6 +1,5 @@
 import Order from "../models/order.model.js";
 
-// ✅ Create new order (called before Stripe checkout)
 export const createOrder = async (req, res) => {
   try {
     const { products, totalAmount } = req.body;
@@ -27,7 +26,7 @@ export const createOrder = async (req, res) => {
   }
 };
 
-// ✅ Get all orders (admin)
+//  Get all orders (admin)
 export const getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find().sort({ createdAt: -1 });
@@ -37,7 +36,7 @@ export const getAllOrders = async (req, res) => {
   }
 };
 
-// ✅ Get user-specific orders
+//  Get user-specific orders
 export const getUserOrders = async (req, res) => {
   try {
     const userId = req.user._id;
@@ -48,7 +47,7 @@ export const getUserOrders = async (req, res) => {
   }
 };
 
-// ✅ Update order status (e.g., after webhook)
+//  Update order status (e.g., after webhook)
 export const updateOrderStatus = async (req, res) => {
   try {
     const { orderId, status } = req.body;

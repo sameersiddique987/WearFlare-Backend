@@ -1,19 +1,3 @@
-// import jwt from "jsonwebtoken";
-
-// const authenticateUser = async (req, res, next) => {
-//   const token = req.headers["authorization"];
-//   if (!token) return res.status(404).json({ message: "no token found" });
-
-//   jwt.verify(token, process.env.ACCESS_JWT_SECRET, (err, user) => {
-//     if (err) return res.status(403).json({ message: "invalid token" });
-//     req.user = user;
-//     next();
-//   });
-// };
-
-// export default authenticateUser;
-
-
 import jwt from "jsonwebtoken";
 
 const authenticateUser = async (req, res, next) => {
@@ -23,11 +7,11 @@ const authenticateUser = async (req, res, next) => {
     return res.status(401).json({ message: "No or invalid token header" });
   }
 
-  const token = authHeader.split(" ")[1]; // Only the token part
+  const token = authHeader.split(" ")[1]; 
 
   try {
     const user = jwt.verify(token, process.env.ACCESS_JWT_SECRET);
-    req.user = user; // This should contain userId/email etc.
+    req.user = user; 
     next();
   } catch (err) {
     return res.status(403).json({ message: "Invalid or expired token" });
